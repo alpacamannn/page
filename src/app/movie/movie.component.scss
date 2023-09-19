@@ -1,0 +1,117 @@
+table {
+  
+  transform: scale(0.9);
+ 
+}
+.toolbar{
+  background: transparent;
+}
+.overflow{
+  overflow: hidden;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+  background: whitesmoke;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  width: auto;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 350px;
+  font-weight: bolder;
+}
+
+
+.ratingicon{
+  height: 40px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  position: relative;
+  top: 14px;
+}
+.ratingicon1{
+  height: 40px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  position: relative;
+  top: 14px;
+  left: 45px
+}
+.description{
+  width: 700px;
+  height: auto;
+}
+.scalerating{
+  position: relative;
+  right: -400px;
+  bottom: -100px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.example-element-description {
+  padding: 16px;
+  font-size: 20px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+  width: 300px;
+}
+
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.video{
+  position: relative;
+  left: 1050px;
+  bottom: 60px;
+  padding-top: 0;
+}
+
+.flag{
+  height: auto;
+  width: auto;
+  // background-color: rgb(173, 166, 166);
+  background-size: 50% auto;
+  transform: scale(0.7);
+}

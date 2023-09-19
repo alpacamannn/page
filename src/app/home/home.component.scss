@@ -1,0 +1,35 @@
+.example-spacer {
+    flex: 1 1 auto;
+    }
+body{
+    height: 100%;
+    overflow: hidden; 
+}
+
+
+
+.bar{
+    background-color: blanchedalmond;
+}
+
+.buttons{
+    text-align: center;
+    margin-top: 0;
+    margin-left: 10px;
+    
+}
+
+.line{
+    margin:0%;
+}
+
+.headline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 400px;
+    margin-bottom: 0;
+    color:aqua; 
+}
+
+
