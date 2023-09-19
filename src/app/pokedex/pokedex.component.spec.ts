@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { YoutubeComponent } from './youtube.component';
+import { PokedexComponent } from './pokedex.component';
 
-describe('YoutubeComponent', () => {
-  let component: YoutubeComponent;
-  let fixture: ComponentFixture<YoutubeComponent>;
+describe('PokedexComponent', () => {
+  let component: PokedexComponent;
+  let fixture: ComponentFixture<PokedexComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [YoutubeComponent]
+      declarations: [PokedexComponent]
     });
-    fixture = TestBed.createComponent(YoutubeComponent);
+    fixture = TestBed.createComponent(PokedexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

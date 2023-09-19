@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieComponent } from './movie/movie.component';
-import { YoutubeComponent } from './youtube/youtube.component';
+
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
@@ -18,6 +18,7 @@ import { ToTitlePipe } from './to-title.pipe';
 import { PrettyPipe } from './pretty.pipe';
 import { SafePipe } from './safe.pipe';
 import { PrettyscalePipe } from './prettyscale.pipe';
+import { PokedexComponent } from './pokedex/pokedex.component';
 
 
 
@@ -25,12 +26,13 @@ import { PrettyscalePipe } from './prettyscale.pipe';
   declarations: [
     AppComponent,
     MovieComponent,
-    YoutubeComponent,
+
     HomeComponent,
     ToTitlePipe,
     PrettyPipe,
     SafePipe,
     PrettyscalePipe,
+    PokedexComponent,
 
   ],
   imports: [
