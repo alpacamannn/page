@@ -16,40 +16,78 @@ export class MovieapiService {
     }
   };
 
-  async allFavMovies() {
+ 
+
+  // async allFavMovies() {
     
-    const listmoviesresp = await fetch(`https://api.themoviedb.org/3/account/20431051/favorite/movies?language=en-US&page=1&sort_by=created_at.asc`, this.options)
-    const list: MovieType = await listmoviesresp.json();
-    const arr = []
-    do {
-      let temp = await fetch(`https://api.themoviedb.org/3/account/20431051/favorite/movies?language=en-US&page=${list.total_pages--}&sort_by=created_at.asc`, this.options)
-      const temp2: MovieType = await temp.json();
-      arr.push(temp2)
-    }
-    while (list.total_pages > 0)
+  //   const listmoviesresp = await fetch(`https://api.themoviedb.org/3/account/20431051/favorite/movies?language=en-US&page=${1}&sort_by=created_at.asc`, this.options)
+  //   const list: MovieType = await listmoviesresp.json();
+  //   const arr = []
+  //   do {
+  //     let temp = await fetch(`https://api.themoviedb.org/3/account/20431051/favorite/movies?language=en-US&page=${list.total_pages--}&sort_by=created_at.asc`, this.options)
+  //     const temp2: MovieType = await temp.json();
+  //     arr.push(temp2)
+  //   }
+  //   while (list.total_pages > 0)
 
-    return arr
+  //   return arr
 
-  }
+  // }
 
-  async allRatedMovies() {
+  // async allRatedMovies() {
    
-    const listmoviesresp = await fetch(`https://api.themoviedb.org/3/account/20431051/rated/movies?language=en-US&page=1&sort_by=created_at.asc`, this.options)
+  //   const listmoviesresp = await fetch(`https://api.themoviedb.org/3/account/20431051/rated/movies?language=en-US&page=1&sort_by=created_at.asc`, this.options)
+  //   const list: MovieType = await listmoviesresp.json();
+  //   const arr = []
+  //   do {
+  //     let temp = await fetch(`https://api.themoviedb.org/3/account/20431051/rated/movies?language=en-US&page=${list.total_pages--}&sort_by=created_at.asc`, this.options)
+  //     const temp2: MovieType = await temp.json();
+  //     arr.push(temp2)
+  //   }
+  //   while (list.total_pages > 0)
+  //   console.log(arr)
+  //   return arr
+
+  // }
+
+
+async Movie(page: number, category: string){
+const res = await fetch(`https://api.themoviedb.org/3/account/20431051/${category}/movies?language=en-US&page=${page}&sort_by=created_at.asc`, this.options)
+const list: MovieType = await res.json();
+return list
+}
+
+
+async allTheMovies(category: string){
+const list = await this.Movie(1, category)
+const arr: MovieType[] = []
+do{
+  let tempList = this.Movie(list.total_pages--, category)
+  arr.push(await tempList)
+}while(list.total_pages > 0)
+return await arr
+}
+
+start: string = 'https://api.themoviedb.org/3/account/20431051/'
+category: 'favorite/' | 'rated/' = 'favorite/'
+pagePart: string = 'movies?language=en-US&page='
+endPart: string = '&sort_by=created_at.asc'
+
+async allMovies(start: string, category: 'rated' | 'favorite', pagePart: string, endPart: string) {
+    const listmoviesresp = await fetch(start + category + pagePart + '1' + endPart, this.options)
     const list: MovieType = await listmoviesresp.json();
     const arr = []
     do {
-      let temp = await fetch(`https://api.themoviedb.org/3/account/20431051/rated/movies?language=en-US&page=${list.total_pages--}&sort_by=created_at.asc`, this.options)
+      let temp = await fetch(`${start}${category}${pagePart}${list.total_pages--}${endPart}`, this.options)
       const temp2: MovieType = await temp.json();
       arr.push(temp2)
     }
     while (list.total_pages > 0)
-    console.log(arr)
-    return arr
 
+    return arr
   }
 
-
-  async getTrailer(id: string) {
+async getTrailer(id: string) {
    
 
 

@@ -34,7 +34,7 @@ export class MovieComponent implements OnInit {
 
 
   async getAllFavMovieList() {
-    let rawList = await this.api.allFavMovies();
+    let rawList = await this.api.allTheMovies('favorite');
     // console.log(rawList)
     let output: any = []
     for (let i = 0; i < rawList.length; i++) {
@@ -50,13 +50,16 @@ export class MovieComponent implements OnInit {
   }
 
   async getAllRatedMovieList() {
-    let rawList = await this.api.allRatedMovies();
+    let rawList = await this.api.allTheMovies('rated');
+    console.log(rawList)
     // console.log(rawList)
     let output: any = []
+    
     // append the results to one array
     for (let i = 0; i < rawList.length; i++) {
       output = [...rawList[i].results, ...output]
     }
+    
     // creates a link for videos
     for (let i = 0; i < output.length; i++) {
       output[i].video_links = await this.api.getTrailer(output[i].id)
@@ -111,7 +114,7 @@ export class MovieComponent implements OnInit {
   ngOnInit(): void {
     this.getAllData()
     
-
+  
   }
 
 

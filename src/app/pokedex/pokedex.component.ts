@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PokeapiService } from '../services/pokeapi.service';
+import { PokeapiService, Pokedex } from '../services/pokeapi.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { NaviService } from '../services/navi.service';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
+
+import { TeamComponent } from '../team/team.component';
 
 @Component({
   selector: 'app-pokedex',
@@ -10,18 +13,20 @@ import { NaviService } from '../services/navi.service';
 })
 export class PokedexComponent implements OnInit {
 
+team: Pokedex[] = []
 pokedex: Pokedex[] = []
-displayedColumns: string[] = ['sprite','nr', 'name', 'weight', 'height'];
+displayedColumns: string[] = ['sprite','nr', 'name', 'weight', 'height', 'plus'];
 dataSource: any 
 
-  constructor(private pokeapi: PokeapiService, private navi: NaviService){
+  constructor(private pokeapi: PokeapiService, private navi: NaviService, private _bottomSheet: MatBottomSheet){
     
   }
 
 async getPokemon(num: number){
+
 const pokemonData = await this.pokeapi.fetchPokemon(num)
-const data: Pokedex = await pokemonData.json()
-return data;
+
+return pokemonData;
 }
 
 goTo(dir:string){
@@ -39,42 +44,23 @@ async getTruePokedex(){
   return this.dataSource = new MatTableDataSource(this.pokedex)
 }
 
+addPokemon(pokemon: Pokedex){
+ this.pokeapi.addPokemon(pokemon)
+}
+
+openBottomSheet(){
+  this._bottomSheet.open(TeamComponent)
+}
+
+getTeam(){
+  return this.team
+}
+
+
 
 ngOnInit(): void {
   this.getTruePokedex();
 }
 
-
-}
-export interface Pokedex{
-  abilities: []
-  base_experience: number
-  forms: []
-  game_indices: []
-  height: number
-  held_items: []
-  id: number
-  is_default: boolean
-  location_area_encounters: string
-  moves: []
-  name: string
-  order: number
-  past_types: []
-  species: {}
-  sprites: sprites
-  stats: []
-  types: []
-  weight: number
-}
-
-export interface sprites{
-  back_default?: string
-  back_female?: string
-  back_shiny?: string
-  back_shiny_female?: string
-  front_default: string
-  front_female?: string
-  front_shiny?: string
-  front_shiny_female?: string
 
 }
