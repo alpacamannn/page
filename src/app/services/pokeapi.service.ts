@@ -4,12 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class PokeapiService {
+ cache: { [key: number]: any } = {};
 
-  team: Pokedex[] = []
-  randomTeam: Pokedex[] = []
-  cache: { [key: number]: any } = {};
-
-  async fetchPokemon(id: number): Promise<any> {
+ async fetchPokemon(id: number): Promise<any> {
     // a check for pokemon in cache
     if (this.cache[id]) {
       return this.cache[id];
@@ -23,36 +20,9 @@ export class PokeapiService {
     return pokeData;
   }
 
-  addPokemon(pokemon: Pokedex) {
-    if (this.team.length < 6) {
-      this.team.push(pokemon)
-      console.log(this.team)
-    } else {
-      alert('Dein Team ist voll')
-    }
-  }
+  
 
-  getTeam() {
-    return this.team
-  }
-
-  async RandomTeam() {
-    if(this.randomTeam.length < 6){
-    for (let i = 0; i < 6; i++) {
-      let random = Math.floor(Math.random() * (151 - 1) + 1)
-      let result: Pokedex = await this.fetchPokemon(random)
-      this.randomTeam.push(result)
-    }
-  }
-    console.log(this.randomTeam)
-   
-  }
-
-  async getRandomTeam() {
-    await this.RandomTeam()
-    return this.randomTeam
-  }
-
+ 
 
 }
 export interface Pokedex {
@@ -70,13 +40,13 @@ export interface Pokedex {
   order: number
   past_types: []
   species: {}
-  sprites: sprites
+  sprites: sprite
   stats: stats[]
   types: []
   weight: number
 }
 
-export interface sprites {
+export interface sprite {
   back_default?: string
   back_female?: string
   back_shiny?: string

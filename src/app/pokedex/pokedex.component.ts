@@ -5,6 +5,7 @@ import { NaviService } from '../services/navi.service';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 
 import { TeamComponent } from '../team/team.component';
+import { BattleService } from '../services/battle.service';
 
 @Component({
   selector: 'app-pokedex',
@@ -18,7 +19,7 @@ pokedex: Pokedex[] = []
 displayedColumns: string[] = ['sprite','nr', 'name', 'weight', 'height', 'plus'];
 dataSource: any 
 
-  constructor(private pokeapi: PokeapiService, private navi: NaviService, private _bottomSheet: MatBottomSheet){
+  constructor(private pokeapi: PokeapiService, private navi: NaviService, private _bottomSheet: MatBottomSheet, private battle : BattleService){
     
   }
 
@@ -45,7 +46,7 @@ async getTruePokedex(){
 }
 
 addPokemon(pokemon: Pokedex){
- this.pokeapi.addPokemon(pokemon)
+  this.battle.addPokemon(pokemon)
 }
 
 openBottomSheet(){
@@ -60,6 +61,7 @@ getTeam(){
 
 ngOnInit(): void {
   this.getTruePokedex();
+  
 }
 
 

@@ -4,6 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { NaviService } from '../services/navi.service';
+import { BattleService } from '../services/battle.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { NaviService } from '../services/navi.service';
 })
 export class HomeComponent implements OnInit{
 
-constructor(private navi: NaviService, ){}
+constructor(private navi: NaviService, private battle: BattleService){}
 
 
  goTo(loc: string){
@@ -24,6 +25,7 @@ constructor(private navi: NaviService, ){}
 
 
 ngOnInit(): void {
+  this.battle.setEnemy()
  }
 
 

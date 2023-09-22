@@ -1,6 +1,6 @@
 
 <!-- <img [src]="myTeam[0].sprites.back_default" alt=""> -->
-<div class="myPokemonpic"><img [src]="myPokemon.sprites.back_default" alt=""></div>
+<div class="myPokemonpic"><img [src]="battle.getPlayer().currentPokemon!.sprites.back_default" alt=""></div>
 <mat-card class="myMenu">
     <mat-card-actions>
       <button (click)='attack()'class="myAttack" mat-button>ATTACK</button>
@@ -10,18 +10,18 @@
 
   <mat-card class="myToolCard">
     <mat-card-actions>
-        <mat-card-title>{{myPokemon.name}}</mat-card-title>
-        <mat-progress-bar class="bar" mode="determinate" [value]="100 / (myPokemon.stats[0].base_stat) * (myhp)"></mat-progress-bar>
-           <mat-card-footer class="bar">{{myhp}}/{{myPokemon.stats[0].base_stat}}</mat-card-footer>
+        <mat-card-title>{{battle.getPlayer().currentPokemon!.name}}</mat-card-title>
+        <mat-progress-bar class="bar" mode="determinate" [value]="100 / (battle.getPlayer().currentPokemon!.stats[0].base_stat) * (battle.getPlayer().currentHP)"></mat-progress-bar>
+           <mat-card-footer class="bar">{{battle.getPlayer().currentHP}}/{{battle.getPlayer().currentPokemon!.stats[0].base_stat}}</mat-card-footer>
     </mat-card-actions>
   </mat-card>
 
-  <div class="opPokemonpic"><img [src]="opPokemon.sprites.front_default" alt=""></div>
+  <div class="opPokemonpic"><img [src]="battle.getEnemy().currentPokemon!.sprites.front_default" alt=""></div>
   <mat-card class="opToolCard">
     <mat-card-actions>
-        <mat-card-title>{{opPokemon.name}}</mat-card-title>
-        <mat-progress-bar class="opbar" mode="determinate" [value]="100 / (opPokemon.stats[0].base_stat) * (ophp)"></mat-progress-bar>
-           <mat-card-footer class="opbar">{{ophp}}/{{opPokemon.stats[0].base_stat}}</mat-card-footer>
+        <mat-card-title>{{battle.getEnemy().currentPokemon!.name}}</mat-card-title>
+        <mat-progress-bar class="opbar" mode="determinate" [value]="100 / (battle.getEnemy().currentPokemon!.stats[0].base_stat) * (battle.getEnemy().currentHP)"></mat-progress-bar>
+           <mat-card-footer class="opbar">{{battle.getEnemy().currentHP}}/{{battle.getEnemy().currentPokemon!.stats[0].base_stat}}</mat-card-footer>
     </mat-card-actions>
   </mat-card>
   

@@ -30,6 +30,11 @@
             <td mat-cell *matCellDef="let element"> {{element.height}} m</td>
         </ng-container>
 
+        <ng-container matColumnDef="switch">
+            <th mat-header-cell *matHeaderCellDef>switch</th>
+            <td mat-cell *matCellDef="let element"> <button (click)="choose(element)">choose</button></td>
+        </ng-container>
+
 
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
