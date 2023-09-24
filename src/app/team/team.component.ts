@@ -27,7 +27,10 @@ export class TeamComponent implements OnInit{
 
   choose(pokemon: Pokedex){
   
-    
+  let re = this.team.findIndex((element) => element === pokemon)
+  console.log(re)
+  this.battle.setPlayerCurrentPokemon(re)
+  this.battle.changePokemon("my",re)
   }
 
 

@@ -12,8 +12,10 @@ import { BattleService } from '../services/battle.service';
 })
 export class BattleComponent implements OnInit, OnChanges {
 
-  state1 = battlestate
+  
   state = battlestate.player
+
+  button = false
   
 
 
@@ -24,46 +26,36 @@ export class BattleComponent implements OnInit, OnChanges {
 
               }
 
+              // attack() {
+              //   console.log(this.battle.getEnemy())
+              //   if (this.ophp <= 0) {
+              //     console.log('tot')
+              //     let currentPokemon = this.battle.getEnemy().currentPokemonID++
+              //     if (currentPokemon < 6){
+              //      this.battle.changePokemon('op',currentPokemon)
+              //     }else{
+              //       alert('You Win')
+              //     }
+              //   } else {
+              //     if (this.ophp >= 10){
+              //       this.ophp -= Math.floor(Math.random() * (10 - 1) + 1)
+              //       this.opAttack()
+              //     }
+              //     else {
+              //       this.opAttack()
+              //       this.ophp -= Math.floor(Math.random() * (4 - 1) + 1)
+              //     }
+              //   }
+              // }
   
-  // myTeam: Pokedex[] = this.battle.getPlayer().team
-  // myPokemon: Pokedex = this.myTeam[this.battle.getPlayer().currentPokemonID]
-  // myhp: number = this.battle.getPlayer().currentHP
 
- 
-
-  
-  // opTeam: Pokedex[] = this.battle.getEnemy().team
-  // opPokemon: Pokedex = this.opTeam[this.battle.getEnemy().currentPokemonID]
-  // ophp: number = this.battle.getEnemy().currentHP
-  
 
   
   
 
-  // attack() {
-  //   console.log(this.battle.getEnemy())
-  //   if (this.ophp <= 0) {
-  //     console.log('tot')
-  //     let currentPokemon = this.battle.getEnemy().currentPokemonID++
-  //     if (currentPokemon < 6){
-  //      this.battle.changePokemon('op',currentPokemon)
-  //     }else{
-  //       alert('You Win')
-  //     }
-  //   } else {
-  //     if (this.ophp >= 10){
-  //       this.ophp -= Math.floor(Math.random() * (10 - 1) + 1)
-  //       this.opAttack()
-  //     }
-  //     else {
-  //       this.opAttack()
-  //       this.ophp -= Math.floor(Math.random() * (4 - 1) + 1)
-  //     }
-  //   }
-  // }
 
   attack(){
-    console.log()
+    this.gameloop()
 
   }
 
@@ -74,25 +66,42 @@ gameloop(){
     switch(this.state){
       
       case battlestate.player:
+        let random = Math.floor(Math.random() * (10 - 1) + 1)
+        this.battle.hitEnemyHP(random)
+        this.state = battlestate.enemy
+        // this.button = true
+        if(this.battle.getPlayerHP() < 0){
+        this.battle.changePokemon('my', this.battle.incrementPlayerCurrentPokemon())
+        }
+        return
 
+      case battlestate.enemy:
+        let random1 = Math.floor(Math.random() * (10 - 1) + 1)
+        this.battle.hitPlayerHP(random1)
+        this.state = battlestate.end
+        // this.button = false
+        if(this.battle.getEnemyHP() < 0){
+        this.battle.changePokemon('op', this.battle.incrementEnemyCurrentPokemon())
+        }
+        return
+      case battlestate.end:
+        if(this.battle.getPlayerCurrentPokemon() > 6){
+          alert("Du hast verloren")
+        }else if(this.battle.getEnemyCurrentPokemon() > 6){
+          alert("Du hast gewonnen")
+        }
 
-
-
-
+        
+        this.state = battlestate.player
+        break;
+        
+      }
+        
     }
-}
-  while(battlestate.end)
+    while(battlestate.end)
 
-
-
-}
-
-
-
-
+  }
   
-
-
   openBottomSheet() {
     this._bottomSheet.open(TeamComponent)
   }
@@ -101,16 +110,13 @@ gameloop(){
 
   ngOnInit(): void {
     this.battle.setPlayer()
+    
   }
 
   ngOnChanges() {
 
 
   }
-
-
-
-
 
 
 
@@ -121,3 +127,23 @@ player = 'player',
 enemy = 'enemy',
 end = 'end'
 }
+
+  
+  
+  
+    
+  
+
+  
+  
+
+        
+
+      
+
+
+
+
+
+
+

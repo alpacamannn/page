@@ -3,8 +3,8 @@
 <div class="myPokemonpic"><img [src]="battle.getPlayer().currentPokemon!.sprites.back_default" alt=""></div>
 <mat-card class="myMenu">
     <mat-card-actions>
-      <button (click)='attack()'class="myAttack" mat-button>ATTACK</button>
-      <button (click)="openBottomSheet()" class="myPokemonChange"mat-button>CHANGE POKEMON</button>
+      <button [disabled]="button" (click)='attack()'class="myAttack" mat-button>ATTACK</button>
+      <button (click)="openBottomSheet()" class="myPokemonChange" mat-button>CHANGE POKEMON</button>
     </mat-card-actions>
   </mat-card>
 
