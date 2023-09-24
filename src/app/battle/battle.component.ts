@@ -16,6 +16,8 @@ export class BattleComponent implements OnInit, OnChanges {
   state = battlestate.player
 
   button = false
+
+  dialog = "Du kannst dein Pokemon wechseln oder angreiffen"
   
 
 

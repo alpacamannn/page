@@ -94,10 +94,7 @@ export class BattleService {
   getEnemyHP() {
     return this.enemy.currentHP
   }
-
-
-
-
+  
   async setEnemy() {
     await this.getRandomTeam()
     this.enemy.currentPokemon = this.enemy.team[this.enemy.currentPokemonID]
@@ -105,45 +102,47 @@ export class BattleService {
     //console.log(this.enemy)
 
   }
-
-
   setPlayer() {
     this.player.currentPokemon = this.player.team[this.player.currentPokemonID]
     this.player.currentHP = this.player.currentPokemon.stats[0].base_stat
     //console.log(this.player)
 
   }
-
-  changePokemon(team: string, index: number) {
-
-    if (team == 'my') {
-      this.player.currentPokemon = this.player.team[index]
-      this.player.currentHP = this.player.currentPokemon.stats[0].base_stat
-    } else {
-      this.enemy.currentPokemon = this.enemy.team[index]
-      this.enemy.currentHP = this.enemy.currentPokemon.stats[0].base_stat
+  
+    changePokemon(team: string, index: number) {
+  
+      if (team == 'my') {
+        this.player.currentPokemon = this.player.team[index]
+        this.player.currentHP = this.player.currentPokemon.stats[0].base_stat
+      } else {
+        this.enemy.currentPokemon = this.enemy.team[index]
+        this.enemy.currentHP = this.enemy.currentPokemon.stats[0].base_stat
+      }
+  
+  
     }
-
-
+    constructor(private pokeapi: PokeapiService) {
+      this.setEnemy()
+      //this.setPlayer()
+      // console.log(this.player)
+    }
   }
-
-
-
-
-
-  constructor(private pokeapi: PokeapiService) {
-    this.setEnemy()
-    //this.setPlayer()
-    // console.log(this.player)
+  
+  
+  
+  
+  export interface Trainer {
+    team: Pokedex[]
+    currentPokemon?: Pokedex
+    currentPokemonID: number
+    currentHP: number
   }
-}
-
-
-
-
-export interface Trainer {
-  team: Pokedex[]
-  currentPokemon?: Pokedex
-  currentPokemonID: number
-  currentHP: number
-}
+    
+    
+    
+    
+    
+    
+    
+    
+    
